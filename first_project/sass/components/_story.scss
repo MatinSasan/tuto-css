@@ -29,14 +29,47 @@
     // with float never mess with margins; but tansform
     // you can now use both propoerties in transform :)
     transform: translateX(-3rem) skewX(12deg);
+
+    // for caption
+    position: relative;
   }
 
   // image always need a witdth without exception
   // here is image is wider than its height so we go for height here instead of width
   &__img {
     height: 100%;
+    // tanslate moves the image while scale makes it bigger
+    transform: translateX(-4rem) scale(1.4);
+    transition: all 0.5s;
+    // this baby fixes the glitch with transition
+    backface-visibility: hidden;
   }
 
   &__text {
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    // if the tansition sahkes in the end
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
   }
 }
